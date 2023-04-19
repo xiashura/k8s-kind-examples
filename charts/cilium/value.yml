@@ -1,6 +1,6 @@
 
 kubeProxyReplacement: strict
-k8sServiceHost: ${K8S_SERVICE_HOST}
+k8sServiceHost: KIND_LOAD_BALANCER
 k8sServicePort: 6443
 hostServices:
   enabled: false
