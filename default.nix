@@ -25,7 +25,7 @@ let
   init-metallb = pkgs.writeShellScriptBin "init-metallb" ''
         source env/kind.env
         source env/metallb.env
-        helm upgrade --install --namespace metallb-system --create-namespace --repo https://metallb.github.io/metallb metallb metallb
+        helm upgrade --install --wait --namespace metallb-system --create-namespace --repo https://metallb.github.io/metallb metallb metallb
         kubectl apply -f - << EOF
     apiVersion: metallb.io/v1beta1
     kind: IPAddressPool
@@ -45,7 +45,7 @@ let
   '';
 
   init-nginx = pkgs.writeShellScriptBin "init-nginx" ''
-    helm upgrade --install --namespace ingress-nginx \
+    helm upgrade --install --wait --namespace ingress-nginx \
     --create-namespace --repo https://kubernetes.github.io/ingress-nginx \
     ingress-nginx ingress-nginx --values charts/ingress-nginx/value.yml
   '';
