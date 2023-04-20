@@ -19,7 +19,7 @@ let
       --repo https://helm.cilium.io cilium cilium \
       --values charts/cilium/value.yml
     sed -i "s/$KIND_LOAD_BALANCER/KIND_LOAD_BALANCER/g" charts/cilium/value.yml
-    cilium status --wait
+    cilium status --wait-duration 10m
   '';
 
   init-metallb = pkgs.writeShellScriptBin "init-metallb" ''
