@@ -1,0 +1,14 @@
+
+hostAliases: 
+  - ip: "10.96.181.53"
+    hostnames:
+      - "prometheus"
+
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  path: /
+  pathType: Prefix
+  hosts:
+    - grafana.172.20.255.200.nip.io
