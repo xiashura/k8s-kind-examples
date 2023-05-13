@@ -19,7 +19,7 @@ let
       --repo https://helm.cilium.io cilium cilium \
       --values charts/cilium/value.yml
     sed -i "s/$KIND_LOAD_BALANCER/KIND_LOAD_BALANCER/g" charts/cilium/value.yml
-    cilium status --wait-duration 10m
+    cilium status --wait
   '';
 
   init-metallb = pkgs.writeShellScriptBin "init-metallb" ''
@@ -78,6 +78,7 @@ in stdenv.mkDerivation {
 
   name = "k8s-metallb-ingress";
   buildInputs = [
+    k9s
     kind
     terraform
     kubectl
