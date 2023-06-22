@@ -1,6 +1,16 @@
 server:
+  ingress:
+    enabled: true 
+    ingressClassName: "nginx"
+    pathType: Prefix
+    activeService: true
+    hosts:
+      - host: vault.172.20.255.200.nip.io
+        path: /
   ha:
     enabled: true
     replicas: 2
     raft: 
       enabled: true
+ui: 
+  enabled: true
