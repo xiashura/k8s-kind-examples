@@ -1,0 +1,31 @@
+redis-ha:
+  enabled: false
+
+controller:
+  replicas: 1
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    path: /
+    pathType: Prefix
+    hosts:
+      - argo-cd.172.20.255.200.nip.io
+    https: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      nginx.ingress.kubernetes.io/backend-protocol:  "HTTPS"
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+
+repoServer:
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+
+applicationSet:
+  replicaCount: 2
