@@ -76,6 +76,12 @@ in stdenv.mkDerivation {
 
   KUBECONFIG = "config.yml";
 
+  VAULT_ADDR = "http://vault.172.20.255.200.nip.io";
+
+  shellHook = ''
+    export VAULT_TOKEN=$(jq -r ".root_token" cluster-keys.json)
+  '';
+
   name = "k8s-metallb-ingress";
   buildInputs = [
     k9s
@@ -91,5 +97,6 @@ in stdenv.mkDerivation {
     init-nginx
     update-cilium
     kind-clusters-delete
+    vault
   ];
 }
