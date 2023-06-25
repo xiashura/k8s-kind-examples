@@ -5,5 +5,5 @@ helm upgrade --install \
   --create-namespace \
   --namespace grafana \
   --repo https://grafana.github.io/helm-charts \
-  --values ./charts/grafana/value.yml \ 
+  --values ./charts/grafana/value.yml \
   grafana grafana 
