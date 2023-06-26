@@ -1,12 +1,3 @@
-# gateway: 
-#   enabled: true
-#   ingress:
-#     enabled: true
-#     ingressClassName: "nginx"
-#     hosts:
-#       - host: loki.172.20.255.200.nip.io
-#         paths: 
-#           - path: / 
 write: 
   replicas: 2
   nodeSelector:
@@ -22,6 +13,11 @@ backend:
   nodeSelector:
     worknode: "true"
 
+global:
+  auth_enabled: false
+
+minio:
+  enabled: true
 
 ingress:
   enabled: true 
