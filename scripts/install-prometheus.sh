@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-helm upgrade \ 
+helm upgrade \
   --install \
   --wait \
   --create-namespace \
