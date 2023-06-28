@@ -1,9 +1,51 @@
 
-hostAliases: 
-  - ip: "10.96.181.53"
-    hostnames:
-      - "prometheus"
+hostAliases:
+- ip: "PROMETHEUS_SERVER"
+  hostnames:
+  - "prometheus"
+- ip: "LOKI_SERVER"
+  hostnames:
+  - "loki"
 
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus
+      # access: proxy
+      tlsSkipVerify: true
+      isDefault: false
+    - name: Loki
+      type: loki
+      url: http://loki
+      tlsSkipVerify: true
+      isDefault: false
+      jsonData:
+        httpHeaderName1: "X-Scope-OrgID"
+      secureJsonData:
+        httpHeaderValue1: 'fake'
+
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: 'default'
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/standard
+
+dashboards:
+  default:
+    prometheus-stats:
+      url: "https://grafana.com/api/dashboards/3119/revisions/2/download"
+      token: ""
 
 ingress:
   enabled: true
@@ -11,4 +53,4 @@ ingress:
   path: /
   pathType: Prefix
   hosts:
-    - grafana.172.20.255.200.nip.io
+  - grafana.172.20.255.200.nip.io
