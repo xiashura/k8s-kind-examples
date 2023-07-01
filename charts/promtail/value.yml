@@ -1,0 +1,10 @@
+config:
+  clients:
+  - url: http://LOKI_SERVER/loki/api/v1/push
+    headers:
+      X-Scope-OrgID: fake
+
+
+
+nodeSelector:
+  worknode: "true"
